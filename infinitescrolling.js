@@ -4,8 +4,8 @@
  * Adds infinite scrolling to AmeriCommerce Category pages.
  *
  * Enable it by calling .infiniteScroll(); on $('.product-list')
- * (or the wrapper containing the product list) - which, in Base,
- * is .product-list.
+ * (or the wrapper containing the product list - which, in Base,
+ * is .product-list).
  *
  * It uses the ?asyncpi query string to keep track of the current page.
  * 
