@@ -4,6 +4,8 @@ Adds infinite scrolling to AmeriCommerce Category pages.
 
 ----
 
+###Usage
+
 Enable it by calling `.infiniteScroll();` on `$('.product-list')` (or the wrapper containing the product list) - which, in Base, is `.product-list`.
 
 It uses the `?asyncpi` query string to keep track of the current page.
@@ -22,3 +24,13 @@ You may provide an options object as a parameter when you call `.infiniteScroll(
 Use `$(document).on('ajaxLoad', function() { /* ...*/ });` to call functions `onload` for new products.
 
 By default, it will hide the Product Count, Show Per Page, andpagination, as these are unnecessary with the Infinite Scroll functionality. To change this, edit lines 152-160.
+
+---
+
+###Examples
+
+See the `examples` directory for modified Base category pages with the infinite scrolling script inserted.
+
+`examples/withbutton.ac.html` has a "Load More Products" button to trigger the load event.
+
+`examples/withoutbutton.ac.html` has the load event triggered on `$(window).scroll`.
