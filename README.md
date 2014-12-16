@@ -1,11 +1,24 @@
-#infinitescrolling.js
+# InfiniteScrolling.js
 
-plug-and-play support for infinite scrolling on AmeriCommerce category pages.
+Adds infinite scrolling to AmeriCommerce Category pages.
 
-This script works by monitoring the bottom of the `$(window)` until it's within the last row of products in `.product-list`, at which point it will load the next page, find the products in said page, and append them to the current `.product-list`.
+----
+
+Enable it by calling `.infiniteScroll();` on `$('.product-list')` (or the wrapper containing the product list) - which, in Base, is `.product-list`.
 
 It uses the `?asyncpi` query string to keep track of the current page.
 
-Use `$(document).on('ajaxLoad', function() { /* ... */ });` to call functions onload for new products.
+You may provide an options object as a parameter when you call `.infiniteScroll()` with the following options:
 
-By default, it will hide the Product Count, Show Per Page, and pagination, as these are unnecessary with the Infinite Scroll functionality. To change this, edit lines 116-124.
+  - `onclick`: specify a selector to monitor for click events to trigger 
+      the load event*
+  - `selector`: specify a different selector (defaults to whatever you called
+      `.infiniteScroll()` on) to grab from AJAX-loaded page.
+  - `loader`: specify a path for a gif to display while loading (only used when
+      `onclick` isn't empty).
+
+*Otherwise, this script works by monitoring the bottom of the `$(window)` until it's within the last row of products in `.product-list`, at which point it will load the next page, find the products in said page, andappend them to the current `.product-list`.
+
+Use `$(document).on('ajaxLoad', function() { /* ...*/ });` to call functions `onload` for new products.
+
+By default, it will hide the Product Count, Show Per Page, andpagination, as these are unnecessary with the Infinite Scroll functionality. To change this, edit lines 152-160.
