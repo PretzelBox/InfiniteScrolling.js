@@ -18,6 +18,7 @@
  *       .infiniteScroll() on) to grab from AJAX-loaded page.
  *   - loader: specify a path for a gif to display while loading (only used when
  *       onclick isn't empty).
+ *   - layoutid: specify a layout for retrieving the next page of products.
  *
  *  * Otherwise, this script works by monitoring the bottom of the $(window) 
  * until it's within the last row of products in .product-list, at which 
@@ -37,7 +38,8 @@
     var options = {
       onclick: $scope.onclick ? $scope.onclick : false,
       selector: $scope.selector ? $scope.selector : $(this).selector,
-      loader: $scope.loader ? $scope.loader : false
+      loader: $scope.loader ? $scope.loader : false,
+      layoutid: $scope.layoutid ? $scope.layoutid : false
     };
 
     var $this = $(this)
@@ -54,7 +56,9 @@
 
     function compileQuery(o) {
       var temp = parseQuery();
-      temp[o['key']] = o['val'];
+      for (k in o) {
+        temp[k] = o[k];
+      }
       return '?' + $.param(temp);
     }
 
@@ -99,12 +103,12 @@
       current = nextPage;
       
       if (!isInitial) {
-        var newPath = location.pathname + compileQuery({ 'key': 'asyncpi', 'val': nextPage });
+        var newPath = location.pathname + compileQuery({ asyncpi: nextPage });
         window.history.replaceState({ path: newPath }, '', newPath);
       }
 
       $.ajax({
-        url: location.pathname + compileQuery({ 'key': 'pi', 'val': nextPage }),
+        url: location.pathname + compileQuery({ pi: nextPage, previewlayoutid: options['layoutid'] ? options['layoutid'] : parseQuery()['previewlayoutid'] ? parseQuery['previewlayoutid'] : '' }),
         type: 'GET',
         dataType: 'html',
         success: function(d) {
@@ -115,12 +119,12 @@
             $(document).trigger('ajaxLoad');
           } else {
             keepGoing = false;
-            var newPath = location.pathname + compileQuery({ 'key': 'asyncpi', 'val': parseInt(parseQuery()['asyncpi'], 10) - 1 });
+            var newPath = location.pathname + compileQuery({ asyncpi: parseInt(parseQuery()['asyncpi'], 10) - 1 });
             window.history.replaceState({ path: newPath }, '', newPath);
           }
         },
         error: function(d) {
-          console.log(d);
+          window.console.log(d);
         }
       })
     }
