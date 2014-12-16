@@ -30,7 +30,7 @@
  *
  * By default, it will hide the Product Count, Show Per Page, and
  * pagination, as these are unnecessary with the Infinite Scroll
- * functionality. To change this, edit lines 152-160.
+ * functionality. To change this, edit lines 156-164.
  */
 
 (function($) { 
