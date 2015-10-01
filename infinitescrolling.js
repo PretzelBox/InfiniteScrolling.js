@@ -1,7 +1,7 @@
 /*
  * InfiniteScrolling.js by Joah Gerstenberg
  *
- * Adds infinite scrolling to AmeriCommerce Category pages.
+ * Adds infinite scrolling to Spark Pay Category pages.
  *
  * Enable it by calling .infiniteScroll(); on $('.product-list')
  * (or the wrapper containing the product list - which, in Base,
