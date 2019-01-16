@@ -121,6 +121,10 @@
             keepGoing = false;
             var newPath = location.pathname + compileQuery({ asyncpi: parseInt(parseQuery()['asyncpi'], 10) - 1 });
             window.history.replaceState({ path: newPath }, '', newPath);
+            
+            // Hide load more button if no more pages
+            $(options['onclick']).hide();
+            $(options['onclick']).after('<p style="text-align:center;">Looks like that\'s everything!');
           }
         },
         error: function(d) {
